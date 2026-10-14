@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brindemos solución | Conducta 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   TOKENS — paleta e identidad visual
+   ========================================================= */
+:root{
+  --azul-oscuro:#12276A;
+  --azul-claro:#1EA0CF;
+  --morado:#7C3397;
+  --fucsia:#E50072;
+
+  --azul-oscuro-10: rgba(18,39,106,0.08);
+  --azul-claro-10: rgba(30,160,207,0.10);
+  --fucsia-10: rgba(229,0,114,0.08);
+
+  --bg: #F6F7FB;
+  --card-bg: #FFFFFF;
+  --texto: #1B1E2B;
+  --texto-suave: #5B6072;
+  --borde: #E7E9F2;
+
+  --sombra-sm: 0 2px 8px rgba(18,39,106,0.06);
+  --sombra-md: 0 12px 32px rgba(18,39,106,0.12);
+  --sombra-lg: 0 24px 64px rgba(18,39,106,0.18);
+
+  --radio: 24px;
+  --radio-sm: 14px;
+
+  --font: "Gotham","Montserrat","Arial",sans-serif;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:var(--font);
+  background:
+    radial-gradient(1200px 600px at 15% -10%, var(--azul-claro-10), transparent 60%),
+    radial-gradient(1000px 500px at 110% 10%, var(--fucsia-10), transparent 55%),
+    var(--bg);
+  color:var(--texto);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+button:focus-visible{
+  outline:3px solid var(--azul-claro);
+  outline-offset:3px;
+  border-radius:8px;
+}
+
+[hidden]{ display:none !important; }
+
+.contenedor{
+  max-width:1120px;
+  margin:0 auto;
+  padding:40px 24px 80px;
+}
+
+.angosto{ max-width:820px; margin:0 auto; }
+
+.sr-solo{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+.encabezado{ text-align:center; margin-bottom:28px; }
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--fucsia);
+  background:var(--fucsia-10);
+  padding:8px 16px;
+  border-radius:999px;
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";
+  width:7px; height:7px;
+  border-radius:50%;
+  background:var(--fucsia);
+}
+
+.titulo{
+  font-size:clamp(30px,4.4vw,46px);
+  font-weight:800;
+  color:var(--azul-oscuro);
+  margin:0;
+  letter-spacing:-0.02em;
+  line-height:1.15;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn{
+  font-family:var(--font);
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  font-size:16px;
+  border-radius:999px;
+  padding:18px 40px;
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease;
+  letter-spacing:0.01em;
+}
+.btn:active{ transform:translateY(1px) scale(.99); }
+
+.btn-primario{
+  color:#fff;
+  background:linear-gradient(120deg, var(--azul-oscuro), var(--morado) 60%, var(--fucsia) 130%);
+  box-shadow:0 10px 24px rgba(124,51,151,.35);
+}
+.btn-primario:hover{ transform:translateY(-3px); box-shadow:0 16px 32px rgba(124,51,151,.42); filter:brightness(1.04); }
+.btn-primario:disabled{ opacity:.55; cursor:not-allowed; transform:none; box-shadow:none; }
+
+.btn-secundario{
+  color:var(--azul-oscuro);
+  background:#fff;
+  border:2px solid var(--borde);
+  box-shadow:var(--sombra-sm);
+}
+.btn-secundario:hover{ transform:translateY(-3px); border-color:var(--azul-claro); box-shadow:var(--sombra-md); }
+
+.btn-grande{ min-width:220px; min-height:60px; font-size:17px; }
+
+.zona-boton{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+/* =========================================================
+   PANTALLA 1 — INSTRUCCIONES
+   ========================================================= */
+.tarjeta-instrucciones{
+  background:var(--card-bg);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra-md);
+  border:1px solid var(--borde);
+  padding:clamp(28px,5vw,52px) clamp(22px,5vw,52px);
+  position:relative;
+  overflow:hidden;
+}
+.tarjeta-instrucciones::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:8px;
+  background:linear-gradient(90deg,var(--azul-oscuro),var(--azul-claro),var(--morado),var(--fucsia));
+}
+
+.pasos{
+  list-style:none;
+  margin:0 0 28px;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.paso{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  background:var(--bg);
+  border-radius:var(--radio-sm);
+  padding:16px 18px;
+  font-weight:600;
+  font-size:17px;
+  color:var(--texto);
+}
+.paso-marca{
+  flex:0 0 auto;
+  width:34px; height:34px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800;
+  font-size:15px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--azul-oscuro),var(--morado));
+}
+.paso:nth-child(2) .paso-marca{ background:linear-gradient(135deg,var(--azul-claro),var(--azul-oscuro)); }
+.paso:nth-child(3) .paso-marca{ background:linear-gradient(135deg,var(--morado),var(--fucsia)); }
+.paso:nth-child(4) .paso-marca{ background:linear-gradient(135deg,var(--fucsia),var(--morado)); }
+.paso:nth-child(5) .paso-marca{ background:linear-gradient(135deg,var(--azul-oscuro),var(--azul-claro)); }
+
+.bloque-reflexion{
+  border-radius:var(--radio);
+  padding:26px clamp(20px,4vw,32px);
+  color:#fff;
+  background:linear-gradient(155deg, var(--morado), var(--fucsia) 130%);
+  box-shadow:var(--sombra-md);
+  position:relative;
+  overflow:hidden;
+  margin-bottom:36px;
+}
+.bloque-reflexion::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(220px 220px at 100% 0%, rgba(255,255,255,.18), transparent 65%);
+  pointer-events:none;
+}
+.bloque-reflexion p{
+  margin:0 0 16px;
+  font-weight:600;
+  font-size:17px;
+  position:relative;
+}
+.preguntas-guia{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  position:relative;
+}
+.preguntas-guia li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-weight:700;
+  font-size:17px;
+  line-height:1.4;
+}
+.marca-pregunta{
+  flex:0 0 auto;
+  width:26px; height:26px;
+  border-radius:50%;
+  background:rgba(255,255,255,.22);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px;
+  margin-top:1px;
+}
+
+/* =========================================================
+   PANTALLA 2 — ACTIVIDAD (tarjeta a la izquierda,
+   cronómetro y evaluación a la derecha)
+   ========================================================= */
+.area-actividad{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:28px;
+  align-items:start;
+}
+@media (max-width:900px){
+  .area-actividad{ grid-template-columns:1fr; }
+}
+
+.escena{ perspective:1400px; }
+
+.carta-grande{
+  position:relative;
+  width:100%;
+  min-height:420px;
+  transform-style:preserve-3d;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.carta-grande.volteada{ transform:rotateY(180deg); }
+
+.cara{
+  position:absolute;
+  inset:0;
+  border-radius:var(--radio);
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  box-shadow:var(--sombra-lg);
+  overflow:hidden;
+}
+
+/* Dorso: es el botón para sacar la tarjeta */
+.cara-dorso{
+  width:100%;
+  height:100%;
+  border:none;
+  cursor:pointer;
+  font-family:var(--font);
+  color:#fff;
+  background:linear-gradient(155deg,var(--azul-oscuro),var(--morado) 70%,var(--fucsia) 150%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  text-align:center;
+  padding:24px;
+  transition:filter .2s ease;
+}
+.cara-dorso:hover:not(:disabled){ filter:brightness(1.07); }
+.cara-dorso:disabled{ cursor:default; }
+.cara-dorso:focus-visible{
+  outline:4px solid var(--azul-claro);
+  outline-offset:4px;
+  border-radius:var(--radio);
+}
+.cara-dorso::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(260px 260px at 100% 0%, rgba(255,255,255,.2), transparent 65%);
+  pointer-events:none;
+}
+.cara-dorso::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:2px solid rgba(255,255,255,.35);
+  border-radius:16px;
+  pointer-events:none;
+}
+.dorso-simbolo{ font-size:64px; line-height:1; position:relative; }
+.dorso-titulo{ font-size:clamp(24px,3.4vw,32px); font-weight:800; letter-spacing:-0.01em; position:relative; }
+.dorso-marca{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; opacity:.85; position:relative; }
+.dorso-pista{
+  position:relative;
+  margin-top:18px;
+  background:#fff;
+  color:var(--azul-oscuro);
+  font-weight:800;
+  font-size:16px;
+  padding:14px 26px;
+  border-radius:999px;
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+  animation:latido 2s ease-in-out infinite;
+}
+@keyframes latido{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.05); } }
+
+/* Frente: tarjeta con marco completo */
+.cara-frente{
+  transform:rotateY(180deg);
+  border:7px solid transparent;
+  background:
+    linear-gradient(#ffffff,#ffffff) padding-box,
+    linear-gradient(135deg,var(--azul-oscuro),var(--azul-claro) 35%,var(--morado) 70%,var(--fucsia)) border-box;
+  padding:clamp(30px,4vw,44px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.cara-frente::after{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:2px solid var(--borde);
+  border-radius:16px;
+  pointer-events:none;
+}
+
+.insignia-caso{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:var(--azul-oscuro-10);
+  color:var(--azul-oscuro);
+  font-weight:700;
+  font-size:14px;
+  padding:8px 18px;
+  border-radius:999px;
+  margin-bottom:18px;
+  position:relative;
+  z-index:1;
+}
+.insignia-caso .icono{ font-size:18px; }
+
+.carta-titulo{
+  font-size:clamp(24px,3vw,30px);
+  font-weight:800;
+  color:var(--azul-oscuro);
+  margin:0 0 14px;
+  letter-spacing:-0.01em;
+  line-height:1.2;
+  position:relative;
+  z-index:1;
+}
+.carta-texto{
+  font-size:clamp(18px,2vw,21px);
+  font-weight:600;
+  color:var(--texto);
+  margin:0;
+  line-height:1.5;
+  position:relative;
+  z-index:1;
+}
+
+/* Columna derecha: paneles de fase */
+.columna-lateral{ min-width:0; }
+
+.panel-fase{
+  background:var(--card-bg);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra-md);
+  padding:clamp(22px,3vw,32px);
+  text-align:center;
+  animation:subir .45s ease both;
+}
+@keyframes subir{ from{ opacity:0; transform:translateY(16px);} to{ opacity:1; transform:translateY(0);} }
+
+.panel-fase h3{
+  margin:0 0 8px;
+  font-size:20px;
+  font-weight:800;
+  color:var(--azul-oscuro);
+}
+.panel-fase p{
+  margin:0 0 20px;
+  color:var(--texto-suave);
+  font-weight:500;
+}
+
+.espera-icono{ font-size:44px; line-height:1; margin-bottom:12px; }
+.panel-espera p{ margin-bottom:0; }
+
+.rol-chip{
+  display:inline-block;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:6px 14px;
+  border-radius:999px;
+  margin-bottom:12px;
+}
+.rol-colaborador{ background:var(--fucsia-10); color:var(--fucsia); }
+.rol-grupo{ background:rgba(124,51,151,.10); color:var(--morado); }
+
+/* Cronómetro */
+.reloj{
+  position:relative;
+  width:180px; height:180px;
+  margin:4px auto 20px;
+}
+.reloj svg{ width:100%; height:100%; transform:rotate(-90deg); }
+.reloj-fondo{ fill:none; stroke:var(--borde); stroke-width:12; }
+.reloj-progreso{
+  fill:none;
+  stroke:url(#grad-reloj);
+  stroke-width:12;
+  stroke-linecap:round;
+  stroke-dashoffset:0;
+  transition:stroke-dashoffset 1s linear;
+}
+.reloj-tiempo{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  font-weight:900;
+  color:var(--azul-oscuro);
+  letter-spacing:-0.02em;
+}
+.reloj.final .reloj-tiempo{ color:var(--fucsia); }
+
+/* Evaluación */
+.preguntas{
+  list-style:none;
+  margin:0 0 22px;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  text-align:left;
+}
+.pregunta{
+  border:2px solid var(--borde);
+  border-radius:var(--radio-sm);
+  padding:14px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:border-color .2s ease, background .2s ease;
+}
+.pregunta.si{ border-color:var(--azul-claro); background:var(--azul-claro-10); }
+.pregunta.mejorar{ border-color:var(--fucsia); background:var(--fucsia-10); }
+
+.pregunta-texto{ font-weight:700; color:var(--azul-oscuro); font-size:16px; }
+
+.opciones{ display:flex; gap:8px; flex-wrap:wrap; }
+.opcion{
+  font-family:var(--font);
+  font-weight:700;
+  font-size:14px;
+  padding:9px 16px;
+  border-radius:999px;
+  border:2px solid var(--borde);
+  background:#fff;
+  color:var(--texto-suave);
+  cursor:pointer;
+  transition:all .18s ease;
+}
+.opcion:hover{ border-color:var(--azul-claro); color:var(--azul-oscuro); }
+.opcion[aria-pressed="true"].op-si{ background:var(--azul-claro); border-color:var(--azul-claro); color:#fff; }
+.opcion[aria-pressed="true"].op-mejorar{ background:var(--fucsia); border-color:var(--fucsia); color:#fff; }
+
+.pie-actividad{
+  display:flex;
+  justify-content:center;
+  margin-top:40px;
+  padding-top:28px;
+  border-top:2px dashed var(--borde);
+}
+
+/* =========================================================
+   PANTALLA 3 — CIERRE: COMPORTAMIENTOS DE LA CONDUCTA 3
+   ========================================================= */
+.tarjeta-conducta{
+  background:var(--card-bg);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra-md);
+  border:1px solid var(--borde);
+  padding:clamp(28px,5vw,48px) clamp(22px,5vw,48px);
+  position:relative;
+  overflow:hidden;
+}
+.tarjeta-conducta::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:8px;
+  background:linear-gradient(90deg,var(--azul-oscuro),var(--azul-claro),var(--morado),var(--fucsia));
+}
+.tarjeta-conducta .pasos{ margin-bottom:32px; }
+.tarjeta-conducta .paso{ align-items:center; }
+
+@media (prefers-reduced-motion: reduce){
+  .carta-grande{ transition-duration:.01s; }
+  .panel-fase{ animation:none; }
+  .dorso-pista{ animation:none; }
+  .reloj-progreso{ transition:none; }
+  .btn{ transition:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+
+  <!-- ============ PANTALLA 1: INSTRUCCIONES ============ -->
+  <section id="pantalla-instrucciones" class="angosto" aria-labelledby="titulo-instrucciones">
+    <header class="encabezado">
+      <span class="eyebrow">Conducta 3</span>
+      <h1 class="titulo" id="titulo-instrucciones">Brindemos solución</h1>
+    </header>
+
+    <div class="tarjeta-instrucciones">
+      <ul class="pasos">
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">1</span>
+          <span>Organícense en parejas.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">2</span>
+          <span>Dentro de cada pareja, uno asumirá el rol de cliente y el otro el de colaborador.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">3</span>
+          <span>Si te corresponde el rol de cliente, tomá una tarjeta virtual y leela en voz alta.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">4</span>
+          <span>Si estás en el rol de colaborador, tenés un minuto para proponer soluciones a la situación planteada.</span>
+        </li>
+      </ul>
+
+      <div class="bloque-reflexion">
+        <p>Al finalizar tu intervención, el resto del grupo analizará la interacción y reflexionará sobre las siguientes preguntas:</p>
+        <ul class="preguntas-guia">
+          <li><span class="marca-pregunta" aria-hidden="true">?</span><span>¿Escuchó activamente al cliente?</span></li>
+          <li><span class="marca-pregunta" aria-hidden="true">?</span><span>¿Ofreció una solución factible?</span></li>
+          <li><span class="marca-pregunta" aria-hidden="true">?</span><span>¿Acompañó al cliente hasta el final del proceso?</span></li>
+        </ul>
+      </div>
+
+      <div class="zona-boton">
+        <button type="button" class="btn btn-primario btn-grande" id="btn-entendido">¡Entendido! Comencemos</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PANTALLA 2: ACTIVIDAD ============ -->
+  <div id="pantalla-actividad" hidden>
+
+    <header class="encabezado">
+      <span class="eyebrow">Conducta 3</span>
+      <h1 class="titulo">Brindemos solución</h1>
+    </header>
+
+    <main>
+      <div class="area-actividad">
+
+        <!-- Izquierda: tarjeta -->
+        <div class="escena">
+          <div class="carta-grande" id="carta-grande">
+            <button type="button" class="cara cara-dorso" id="btn-sacar">
+              <span class="dorso-simbolo" aria-hidden="true">✦</span>
+              <span class="dorso-titulo">Brindemos solución</span>
+              <span class="dorso-marca">Tarjeta virtual</span>
+              <span class="dorso-pista">Hacé clic para sacar una tarjeta</span>
+            </button>
+            <div class="cara cara-frente">
+              <span class="insignia-caso">
+                <span class="icono" id="frente-icono" aria-hidden="true">📦</span>
+                <span>Situación del cliente</span>
+              </span>
+              <h2 class="carta-titulo" id="carta-titulo">—</h2>
+              <p class="carta-texto" id="carta-texto">—</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Derecha: cronómetro y evaluación -->
+        <div class="columna-lateral">
+
+          <section class="panel-fase panel-espera" id="fase-espera">
+            <div class="espera-icono" aria-hidden="true">⏱️</div>
+            <h3>Cronómetro de 1 minuto</h3>
+            <p>Va a arrancar solo apenas salga la tarjeta. Cuando termine, el grupo analiza la interacción acá.</p>
+          </section>
+
+          <section class="panel-fase" id="fase-tiempo" hidden>
+            <span class="rol-chip rol-colaborador">Rol: colaborador</span>
+            <h3>Proponé soluciones al cliente</h3>
+            <p>El cliente lee la tarjeta en voz alta. Escuchá, ofrecé una solución posible y acompañá hasta el final.</p>
+            <div class="reloj" id="reloj">
+              <svg viewBox="0 0 180 180" aria-hidden="true">
+                <defs>
+                  <linearGradient id="grad-reloj" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#1EA0CF"/>
+                    <stop offset="55%" stop-color="#7C3397"/>
+                    <stop offset="100%" stop-color="#E50072"/>
+                  </linearGradient>
+                </defs>
+                <circle class="reloj-fondo" cx="90" cy="90" r="80"/>
+                <circle class="reloj-progreso" id="reloj-progreso" cx="90" cy="90" r="80"/>
+              </svg>
+              <div class="reloj-tiempo" id="reloj-tiempo" role="timer" aria-live="off">1:00</div>
+            </div>
+            <div class="zona-boton">
+              <button type="button" class="btn btn-secundario" id="btn-pausa">Pausar</button>
+              <button type="button" class="btn btn-primario" id="btn-terminar">Terminar intervención</button>
+            </div>
+          </section>
+
+          <section class="panel-fase" id="fase-evaluar" hidden>
+            <span class="rol-chip rol-grupo">Rol: grupo</span>
+            <h3>Analicemos la interacción</h3>
+            <p>Reflexionen juntos sobre estas tres preguntas.</p>
+            <ul class="preguntas" id="preguntas"></ul>
+            <div class="zona-boton">
+              <button type="button" class="btn btn-primario btn-grande" id="btn-otra">Sacar otra tarjeta</button>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <p class="sr-solo" id="anuncio-tarjeta" aria-live="polite"></p>
+      <p class="sr-solo" id="anuncio-tiempo" aria-live="assertive"></p>
+
+      <div class="pie-actividad">
+        <button type="button" class="btn btn-secundario btn-grande" id="btn-finalizar">Finalizar actividad</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- ============ PANTALLA 3: COMPORTAMIENTOS DE LA CONDUCTA 3 ============ -->
+  <section id="pantalla-final" class="angosto" hidden aria-labelledby="titulo-final">
+    <header class="encabezado">
+      <span class="eyebrow">Conducta 3</span>
+      <h1 class="titulo" id="titulo-final">Brindo soluciones al cliente</h1>
+    </header>
+
+    <div class="tarjeta-conducta">
+      <ul class="pasos">
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">✓</span>
+          <span>Hago preguntas y escucho activamente para comprender la necesidad.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">✓</span>
+          <span>Demuestro interés y disposición para brindar soluciones, evitando las excusas.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">✓</span>
+          <span>Ante alguna demora, mantengo al cliente informado.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">✓</span>
+          <span>Si el producto solicitado no está disponible, ofrezco sustituto.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-marca" aria-hidden="true">✓</span>
+          <span>Pido apoyo a mi supervisor de ser necesario.</span>
+        </li>
+      </ul>
+
+      <div class="zona-boton">
+        <button type="button" class="btn btn-secundario btn-grande" id="btn-volver">Volver a las tarjetas</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* =========================================================
+   DATOS — tarjetas de situaciones
+   ========================================================= */
+const CARTAS = [
+  { icono:"📦", titulo:"Producto no disponible", texto:"Buscás un producto que no está disponible en la tienda. Hay mucha gente y tenés poco tiempo." },
+  { icono:"🤷", titulo:"No sabés qué necesitás", texto:"Buscás una solución, pero no sabés qué producto necesitás. Estás acompañado y la otra persona influye en tu decisión." },
+  { icono:"💊", titulo:"Medicamento urgente", texto:"Necesitás un medicamento psicotrópico con urgencia. Tenés poco tiempo y estás molesto por la espera." },
+  { icono:"📱", titulo:"Producto visto en redes", texto:"Viste un producto en redes, pero no recordás su nombre. Ya le preguntaste a otro colaborador y no pudo ayudarte." },
+  { icono:"🏷️", titulo:"Precio inesperado", texto:"Encontrás el producto que buscabas, pero cuesta más de lo que esperabas." },
+  { icono:"⚖️", titulo:"Querés comparar", texto:"Querés comparar varias opciones antes de comprar, pero te surgen dudas nuevas a medida que el colaborador te explica." },
+  { icono:"🚫", titulo:"Producto discontinuado", texto:"Buscás un producto que ya no se fabrica. Querés encontrar una alternativa." },
+  { icono:"🔁", titulo:"Querés cambiar un producto", texto:"Querés cambiar un producto por otro similar. Hay fila en caja y querés resolverlo rápido." },
+  { icono:"❓", titulo:"Tenés muchas preguntas", texto:"Necesitás información sobre un producto y tenés muchas preguntas. Hay otros clientes esperando." },
+  { icono:"🌱", titulo:"Es tu primera compra", texto:"Es la primera vez que comprás este tipo de producto. Necesitás que te orienten desde el inicio." },
+  { icono:"💰", titulo:"Está fuera de tu presupuesto", texto:"El producto que necesitás supera tu presupuesto. Buscás una opción más económica." },
+  { icono:"🎯", titulo:"Querés una recomendación personalizada", texto:"Querés que te recomienden un producto según tus necesidades. Todas las opciones que te presentan te generan dudas." },
+  { icono:"🚶", titulo:"No vas a comprar hoy", texto:"Necesitás orientación, pero no pensás comprar hoy. El colaborador tiene poco tiempo para atenderte." },
+  { icono:"🔍", titulo:"Más económico que la competencia", texto:"Buscás un producto similar al de otra tienda, pero más económico. Comparás precios y características." },
+  { icono:"🧩", titulo:"No entendés las diferencias", texto:"Hay varias opciones y no entendés sus diferencias. La explicación anterior te pareció muy técnica." },
+  { icono:"🎁", titulo:"Comprás para otra persona", texto:"Necesitás un producto para otra persona, pero no sabés exactamente cuál. La persona que necesita el producto no está presente." },
+  { icono:"🧑‍🤝‍🧑", titulo:"Hay poco personal", texto:"Necesitás ayuda para elegir un producto. Hay poco personal y todos los colaboradores ya están atendiendo otras tareas." },
+  { icono:"⏳", titulo:"Información por confirmar", texto:"Preguntás algo que necesita ser validado antes de darte una respuesta. Querés una respuesta inmediata." },
+  { icono:"➕", titulo:"Producto complementario", texto:"Ya elegiste un producto y querés saber si necesitás algo más. Tenés poco tiempo y querés una recomendación concreta." },
+  { icono:"💬", titulo:"Interrumpís constantemente", texto:"Necesitás ayuda para elegir entre varias opciones. Interrumpís constantemente con nuevas preguntas." },
+  { icono:"🛒", titulo:"Producto agotado", texto:"Buscás un producto que normalmente comprás, pero hoy está agotado. Lo necesitás para hoy." },
+  { icono:"↩️", titulo:"Producto equivocado", texto:"Compraste un producto y, al llegar a casa, te diste cuenta de que no era el que necesitabas. Querés saber qué podés hacer." },
+  { icono:"🔖", titulo:"No encontrás una marca", texto:"Buscás una marca específica, pero no la encontrás en la tienda. No querés llevar otra sin antes conocer las alternativas." },
+  { icono:"🧴", titulo:"Necesitás ayuda para usar un producto", texto:"Compraste un producto, pero no sabés cómo utilizarlo correctamente. Querés una explicación sencilla y rápida." }
+];
+
+const PREGUNTAS_EVALUACION = [
+  "¿Escuchó activamente al cliente?",
+  "¿Ofreció una solución factible?",
+  "¿Acompañó al cliente hasta el final del proceso?"
+];
+
+/* Duración de la intervención del colaborador (segundos) */
+const DURACION_SEGUNDOS = 60;
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+const N = CARTAS.length;
+const CIRCUNFERENCIA = 2 * Math.PI * 80;
+const prefiereMenosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TIEMPO_VOLTEO_MS = prefiereMenosMovimiento ? 0 : 850;
+
+const estado = {
+  bolsa:[],            // baraja mezclada; se extrae de a una carta
+  ultimoIndice:null,
+  ocupado:false,
+  token:0,             // invalida temporizadores pendientes al reiniciar
+  segundos:DURACION_SEGUNDOS,
+  intervalo:null,
+  pausado:false
+};
+
+/* =========================================================
+   REFERENCIAS AL DOM
+   ========================================================= */
+const pantallaInstrucciones = document.getElementById("pantalla-instrucciones");
+const pantallaActividad = document.getElementById("pantalla-actividad");
+const pantallaFinal     = document.getElementById("pantalla-final");
+
+const btnEntendido    = document.getElementById("btn-entendido");
+const btnFinalizar    = document.getElementById("btn-finalizar");
+const btnVolver       = document.getElementById("btn-volver");
+
+const cartaGrande     = document.getElementById("carta-grande");
+const frenteIcono     = document.getElementById("frente-icono");
+const cartaTitulo     = document.getElementById("carta-titulo");
+const cartaTexto      = document.getElementById("carta-texto");
+const anuncioTarjeta  = document.getElementById("anuncio-tarjeta");
+const anuncioTiempo   = document.getElementById("anuncio-tiempo");
+
+const faseEspera      = document.getElementById("fase-espera");
+const faseTiempo      = document.getElementById("fase-tiempo");
+const faseEvaluar     = document.getElementById("fase-evaluar");
+const btnSacar        = document.getElementById("btn-sacar");
+const btnPausa        = document.getElementById("btn-pausa");
+const btnTerminar     = document.getElementById("btn-terminar");
+const btnOtra         = document.getElementById("btn-otra");
+
+const reloj           = document.getElementById("reloj");
+const relojTiempo     = document.getElementById("reloj-tiempo");
+const relojProgreso   = document.getElementById("reloj-progreso");
+const listaPreguntas  = document.getElementById("preguntas");
+
+/* =========================================================
+   BARAJA ALEATORIA
+   Mezcla Fisher-Yates: todas las tarjetas salen una vez, en
+   orden aleatorio, antes de que alguna se repita.
+   ========================================================= */
+function barajar(lista){
+  const copia = lista.slice();
+  for (let i = copia.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
+function rellenarBolsa(){
+  const indices = Array.from({ length:N }, (_, i)=> i);
+  const mezcla = barajar(indices);
+  /* Evita que la primera de la nueva ronda repita la última de la anterior */
+  const ultimaPosicion = mezcla.length - 1;
+  if (N > 1 && mezcla[ultimaPosicion] === estado.ultimoIndice){
+    [mezcla[0], mezcla[ultimaPosicion]] = [mezcla[ultimaPosicion], mezcla[0]];
+  }
+  estado.bolsa = mezcla;
+}
+
+function siguienteIndice(){
+  if (estado.bolsa.length === 0) rellenarBolsa();
+  return estado.bolsa.pop();
+}
+
+/* =========================================================
+   FASES (columna derecha)
+   ========================================================= */
+function mostrarFase(fase){
+  faseEspera.hidden  = fase !== "espera";
+  faseTiempo.hidden  = fase !== "tiempo";
+  faseEvaluar.hidden = fase !== "evaluar";
+}
+
+/* =========================================================
+   CRONÓMETRO (1 minuto)
+   ========================================================= */
+function formatearTiempo(seg){
+  const m = Math.floor(seg / 60);
+  const s = seg % 60;
+  return `${m}:${String(s).padStart(2,"0")}`;
+}
+
+function pintarReloj(){
+  relojTiempo.textContent = formatearTiempo(estado.segundos);
+  const avance = 1 - (estado.segundos / DURACION_SEGUNDOS);
+  relojProgreso.style.strokeDashoffset = String(CIRCUNFERENCIA * avance);
+  reloj.classList.toggle("final", estado.segundos <= 10);
+}
+
+function reiniciarReloj(){
+  estado.segundos = DURACION_SEGUNDOS;
+  estado.pausado = false;
+  btnPausa.textContent = "Pausar";
+  relojProgreso.style.transition = "none";
+  pintarReloj();
+  void relojProgreso.getBoundingClientRect();
+  relojProgreso.style.transition = "";
+}
+
+function detenerReloj(){
+  if (estado.intervalo){
+    clearInterval(estado.intervalo);
+    estado.intervalo = null;
+  }
+}
+
+function iniciarReloj(){
+  detenerReloj();
+  estado.intervalo = setInterval(()=>{
+    if (estado.pausado) return;
+    estado.segundos -= 1;
+    if (estado.segundos <= 0){
+      estado.segundos = 0;
+      pintarReloj();
+      anuncioTiempo.textContent = "Se acabó el tiempo.";
+      finalizarIntervencion();
+      return;
+    }
+    pintarReloj();
+    if (estado.segundos === 10){
+      anuncioTiempo.textContent = "Quedan 10 segundos.";
+    }
+  }, 1000);
+}
+
+function alternarPausa(){
+  estado.pausado = !estado.pausado;
+  btnPausa.textContent = estado.pausado ? "Reanudar" : "Pausar";
+}
+
+/* =========================================================
+   SACAR TARJETA — el cronómetro arranca solo al aparecer
+   ========================================================= */
+function pintarTarjeta(indice){
+  const carta = CARTAS[indice];
+  frenteIcono.textContent = carta.icono;
+  cartaTitulo.textContent = carta.titulo;
+  cartaTexto.textContent = carta.texto;
+  anuncioTarjeta.textContent = `${carta.titulo}. ${carta.texto}`;
+}
+
+function sacarTarjeta(){
+  if (estado.ocupado) return;
+  estado.ocupado = true;
+  const miToken = ++estado.token;
+
+  btnSacar.disabled = true;
+  detenerReloj();
+  anuncioTiempo.textContent = "";
+  mostrarFase("espera");
+
+  const indice = siguienteIndice();
+  estado.ultimoIndice = indice;
+
+  const revelar = ()=>{
+    if (miToken !== estado.token) return;
+    pintarTarjeta(indice);
+    requestAnimationFrame(()=>{
+      if (miToken !== estado.token) return;
+      cartaGrande.classList.add("volteada");
+
+      /* Cuando termina el volteo, arranca el cronómetro solo */
+      setTimeout(()=>{
+        if (miToken !== estado.token) return;
+        reiniciarReloj();
+        mostrarFase("tiempo");
+        iniciarReloj();
+        btnPausa.focus({ preventScroll:true });
+        estado.ocupado = false;
+      }, TIEMPO_VOLTEO_MS);
+    });
+  };
+
+  /* Si ya había una tarjeta visible, primero se voltea de vuelta
+     y recién entonces se cambia el contenido de la cara frontal. */
+  if (cartaGrande.classList.contains("volteada")){
+    cartaGrande.classList.remove("volteada");
+    setTimeout(revelar, TIEMPO_VOLTEO_MS);
+  } else {
+    revelar();
+  }
+}
+
+function finalizarIntervencion(){
+  detenerReloj();
+  construirEvaluacion();
+  mostrarFase("evaluar");
+  const primerBoton = listaPreguntas.querySelector(".opcion");
+  if (primerBoton) primerBoton.focus({ preventScroll:true });
+}
+
+/* Deja la actividad lista para empezar de nuevo (tarjeta boca abajo) */
+function reiniciarEscena(){
+  estado.token++;
+  estado.ocupado = false;
+  detenerReloj();
+  reiniciarReloj();
+  cartaGrande.classList.remove("volteada");
+  btnSacar.disabled = false;
+  mostrarFase("espera");
+  anuncioTiempo.textContent = "";
+}
+
+/* =========================================================
+   EVALUACIÓN DEL GRUPO
+   ========================================================= */
+function construirEvaluacion(){
+  listaPreguntas.innerHTML = "";
+
+  PREGUNTAS_EVALUACION.forEach(texto=>{
+    const li = document.createElement("li");
+    li.className = "pregunta";
+
+    const p = document.createElement("span");
+    p.className = "pregunta-texto";
+    p.textContent = texto;
+
+    const grupo = document.createElement("div");
+    grupo.className = "opciones";
+    grupo.setAttribute("role","group");
+    grupo.setAttribute("aria-label", texto);
+
+    const btnSi = document.createElement("button");
+    btnSi.type = "button";
+    btnSi.className = "opcion op-si";
+    btnSi.textContent = "Sí";
+    btnSi.setAttribute("aria-pressed","false");
+
+    const btnMejorar = document.createElement("button");
+    btnMejorar.type = "button";
+    btnMejorar.className = "opcion op-mejorar";
+    btnMejorar.textContent = "Por mejorar";
+    btnMejorar.setAttribute("aria-pressed","false");
+
+    const marcar = (valor)=>{
+      const esSi = valor === "si";
+      btnSi.setAttribute("aria-pressed", String(esSi));
+      btnMejorar.setAttribute("aria-pressed", String(!esSi));
+      li.classList.toggle("si", esSi);
+      li.classList.toggle("mejorar", !esSi);
+    };
+    btnSi.addEventListener("click", ()=> marcar("si"));
+    btnMejorar.addEventListener("click", ()=> marcar("mejorar"));
+
+    grupo.append(btnSi, btnMejorar);
+    li.append(p, grupo);
+    listaPreguntas.appendChild(li);
+  });
+}
+
+/* =========================================================
+   NAVEGACIÓN ENTRE PANTALLAS
+   ========================================================= */
+function irA(pantalla){
+  pantallaInstrucciones.hidden = pantalla !== "instrucciones";
+  pantallaActividad.hidden     = pantalla !== "actividad";
+  pantallaFinal.hidden         = pantalla !== "final";
+  window.scrollTo({ top:0, behavior: prefiereMenosMovimiento ? "auto" : "smooth" });
+}
+
+/* =========================================================
+   EVENTOS
+   ========================================================= */
+btnEntendido.addEventListener("click", ()=>{
+  irA("actividad");
+  btnSacar.focus({ preventScroll:true });
+});
+
+btnSacar.addEventListener("click", sacarTarjeta);
+btnOtra.addEventListener("click", sacarTarjeta);
+btnPausa.addEventListener("click", alternarPausa);
+btnTerminar.addEventListener("click", finalizarIntervencion);
+
+btnFinalizar.addEventListener("click", ()=>{
+  reiniciarEscena();
+  irA("final");
+  btnVolver.focus({ preventScroll:true });
+});
+
+btnVolver.addEventListener("click", ()=>{
+  irA("actividad");
+  btnSacar.focus({ preventScroll:true });
+});
+
+/* Inicio */
+relojProgreso.style.strokeDasharray = String(CIRCUNFERENCIA);
+</script>
+</body>
+</html>
